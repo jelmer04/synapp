@@ -1,10 +1,14 @@
 <html>
 <head>
   <title>synapp</title>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=high-dpi, initial-scale=1.0">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="quaggaJS/dist/quagga.min.js"></script>
+<script type="text/javascript" src="quaggaJS/dist/quagga.min.js"></script>
+<script type="text/javascript" src="ean.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
 	#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
 	#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
@@ -95,7 +99,9 @@ $(function() {
 			$('#scanner_input').val(result.codeResult.code);
 			Quagga.stop();
 			setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
-		}
+      lookup(result.codeResult.code, $('#product'))
+    }
+
 	});
 
 	// Stop quagga in any case, when the modal is closed
@@ -151,5 +157,7 @@ $(function() {
   		</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+  <div id="product"></div>
 </body
 </html>
